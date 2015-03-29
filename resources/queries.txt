@@ -1,0 +1,5 @@
+MATCH (a:Area) OPTIONAL MATCH (a)-[r1]-() DELETE a,r1
+MATCH (p:Province) OPTIONAL MATCH (p)-[r2]-() DELETE p,r2
+Match (r:Resource) DELETE r
+
+MATCH (a:Province )-[:PROVIDES]->(resources) return a,resources

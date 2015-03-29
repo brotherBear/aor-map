@@ -1,0 +1,15 @@
+# The purpose of this file is to define the relation between neighboring provinces
+
+# This is really a graph database???
+
+Hamburg Lubeck
+Hamburg Amsterdam Coast
+Hamburg Copenhagen Coast
+Hamburg Cologne
+Stockholm Whisby Galley
+Stockholm Malmo Coast
+Malmo Copenhagen Galley
+Malmo Kongsberg Coast
+Malmo Stettin Galley
+Copenhagen Lubeck Coast
+

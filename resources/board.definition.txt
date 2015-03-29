@@ -1,0 +1,15 @@
+Region I
+	Hamburg 4 Timber Capital [Amsterdam Copenhagen Lubeck Cologne]
+	Lubeck 3 Stone [Hamburg Copenhagen Stettin Cologne Nuremberg Prague]
+	Copenhagen 1 [Hamburg Lubeck]
+	Stettin 1 [Lubeck Prague Danzig]
+	Danzig 5 Grain
+	Mitau 1 [Danzig Riga]
+	Riga 2 Timber
+	Novgorod 2 Fur
+	Stockholm 3 Metal
+	Whisby 1 [Stockholm]
+	Malmo 1 [Stockholm]
+	"Baltic Sea" 0 [Stockholm Whisby Malmo Stettin Danzig Mitau Riga]
+Region II
+	Bergen 3 Timber
