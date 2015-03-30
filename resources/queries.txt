@@ -1,5 +1,18 @@
-MATCH (a:Area) OPTIONAL MATCH (a)-[r1]-() DELETE a,r1
-MATCH (p:Province) OPTIONAL MATCH (p)-[r2]-() DELETE p,r2
-Match (r:Resource) DELETE r
+// Delete everything with relation!
+MATCH (p)-[r2]-() DELETE p,r2
+
+// Delete nodes without relations
+MATCH (n) delete n
 
 MATCH (a:Province )-[:PROVIDES]->(resources) return a,resources
+
+
+// Find Provinces whithin 2 jumps by Coast from Stettin
+match p=(:Province {name:'Stettin'})-[:CONNECT_BY_COAST*0..2]->() return distinct p, length(p)
+
+// Find nodes related in any way to the Province Stockholm
+MATCH (lon:Province {name:'Stockholm'}) -- (related) return lon, related
+
+
+// Find a route from Copenhagen to Riga inside 4 jumps along the coast (if it exists)
+match p=(:Province {name:'Copenhagen'})-[:CONNECT_BY_COAST*0..4]->(:Province {name:'Riga'}) return distinct p, length(p)

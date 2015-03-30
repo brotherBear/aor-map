@@ -1,10 +1,31 @@
+
+// Clean up the database:
+// Delete everything with relation!
+// MATCH (p)-[r2]-() DELETE p,r2
+
+
+
+// *****************************
+// Define the Areas
+// *****************************
 Create (a1:Area {name:'I'})
 Create (a2:Area {name:'II'})
 Create (a3:Area {name:'III'})
 Create (a4:Area {name:'IV'})
 Create (a5:Area {name:'V'})
 Create (a6:Area {name:'VI'})
+Create (a7:Area {name:'VII'})
+Create (a8:Area {name:'VIII'})
 
+
+// ********************************************************************
+// Define ALL provinces on the map.
+// They are associated with one or more Resource node(s)
+// ********************************************************************
+
+// ********************************************************************
+// All provinces providing Stone resources
+// ********************************************************************
 Create (stone:Resource {type: 'Stone'})
 CREATE (lub:Province { name: 'Lubeck', capacity: 3 })
 create (lub)-[:PROVIDES] -> (stone)
@@ -23,6 +44,9 @@ create (rom)-[:PROVIDES] -> (stone)
 CREATE (nap:Province { name: 'Naples', capacity: 5 })
 create (nap)-[:PROVIDES] -> (stone)
 
+// ********************************************************************
+// All provinces providing Wool resources
+// ********************************************************************
 Create (wool:Resource {type: 'Wool'})
 CREATE (wat:Province { name: 'Waterford', capacity: 2 })
 create (wat)-[:PROVIDES] -> (wool)
@@ -43,6 +67,9 @@ create (smy)-[:PROVIDES] -> (wool)
 CREATE (ang:Province { name: 'Angora', capacity: 2 })
 create (ang)-[:PROVIDES] -> (wool)
 
+// ********************************************************************
+// All provinces providing Timber resources
+// ********************************************************************
 Create (timber:Resource {type: 'Timber'})
 CREATE (fez:Province { name: 'Fez', capacity: 2 })
 create (fez)-[:PROVIDES] -> (timber)
@@ -60,6 +87,9 @@ CREATE (ham:Province { name: 'Hamburg', capacity: 4 })
 create (ham)-[:PROVIDES] -> (timber)
 
 
+// ********************************************************************
+// All provinces providing Grain resources
+// ********************************************************************
 Create (grain:Resource {type: 'Grain'})
 Create (sev:Province { name: 'Seville', capacity: 3})
 Create (sev)-[:PROVIDES]->(grain)
@@ -79,6 +109,9 @@ Create (nam:Province { name: 'North America', capacity: 6})
 Create (nam)-[:PROVIDES]->(grain)
 
 
+// ********************************************************************
+// Define all provinces providing Cloth resources
+// ********************************************************************
 Create (cloth:Resource {type: 'Cloth'})
 Create (tun:Province { name: 'Tunis', capacity: 4})
 Create (tun)-[:PROVIDES]->(cloth)
@@ -96,6 +129,9 @@ Create (bud:Province { name: 'Budapest', capacity: 3})
 Create (bud)-[:PROVIDES]->(cloth)
 Create (nam)-[:PROVIDES]->(cloth)
 
+// ********************************************************************
+// Define all provinces providing Wine resources
+// ********************************************************************
 Create (wine:Resource {type: 'Wine'})
 Create (cre:Province { name: 'Crete', capacity: 3})
 Create (cre)-[:PROVIDES]->(wine)
@@ -113,6 +149,9 @@ Create (loi:Province { name: 'Loire', capacity: 3})
 Create (loi) - [:PROVIDES] -> (wine)
 
 
+// ********************************************************************
+// Define all provinces providing Metal resources
+// ********************************************************************
 CREATE (metal:Resource {type: 'Metal'})
 CREATE (con:Province {name: 'Constantinople', capacity: 4})
 CREATE (con) -[:PROVIDES]-> (metal)
@@ -129,6 +168,9 @@ CREATE (sto) -[:PROVIDES]-> (metal)
 CREATE (sam:Province {name: 'South America', capacity: 6})
 CREATE (sam) -[:PROVIDES]-> (metal)
 
+// ********************************************************************
+// Define all provinces providing Fur resources
+// ********************************************************************
 Create (fur:Resource {type: 'Fur'})
 Create (var:Province {name: 'Varna', capacity: 2})
 Create (var) -[:PROVIDES] -> (fur)
@@ -141,6 +183,9 @@ Create (nov) -[:PROVIDES] -> (fur)
 Create (nam) -[:PROVIDES] -> (fur)
 
 
+// ********************************************************************
+// Define all provinces providing Silk resources
+// ********************************************************************
 Create (silk:Resource {type: 'Silk'})
 Create (sal:Province {name: 'Salonika', capacity: 2})
 Create (sal) -[:PROVIDES] -> (silk)
@@ -155,6 +200,10 @@ Create (ein) -[:PROVIDES] -> (silk)
 Create (chi:Province {name: 'China', capacity: 5})
 Create (chi) -[:PROVIDES] -> (silk)
 
+
+// ********************************************************************
+// Define all provinces providing Spice resources
+// ********************************************************************
 Create (spice:Resource {type: 'Spice'})
 Create (alx:Province {name: 'Alexandria', capacity: 5})
 Create (alx) -[:PROVIDES] -> (spice)
@@ -168,6 +217,9 @@ Create (sam) -[:PROVIDES] -> (spice)
 Create (ind:Province {name: 'India', capacity: 5})
 Create (ind) -[:PROVIDES] -> (spice)
 
+// ********************************************************************
+// Define all provinces providing Gold resources
+// ********************************************************************
 Create (gold:Resource {type: 'Gold'})
 Create (sue:Province {name: 'Suez', capacity: 3})
 Create (sue) -[:PROVIDES] -> (gold)
@@ -178,6 +230,9 @@ Create (pra) -[:PROVIDES] -> (gold)
 Create (ind) -[:PROVIDES] -> (gold)
 Create (sam) -[:PROVIDES] -> (gold)
 
+// ********************************************************************
+// Define all provinces providing Ivory resources
+// ********************************************************************
 Create (ivory:Resource {type: 'Ivory'})
 Create (tri:Province {name: 'Tripoli', capacity: 2})
 Create (tri) -[:PROVIDES] -> (ivory)
@@ -189,60 +244,28 @@ Create (ice:Province {name: 'Iceland', capacity: 2})
 Create (ice) -[:PROVIDES] -> (ivory)
 
 
-Create (rig) -[:CONNECT_BY_COAST] -> (nov)
-Create (rig) -[:CONNECT_BY_LAND] -> (nov)
-
-Create (ham) -[:CONNECT_BY_LAND] -> (lub)
-
+// ********************************************************************
+// Define supporting provinces in Area I
+// ********************************************************************
 Create (mam:Province {name: 'Malmo', capacity: 1})
 Create (mam)-[:SUPPORT] -> (sto)
-Create (mam)-[:CONNECT_BY_COAST] -> (sto)
-Create (mam)-[:CONNECT_BY_LAND] -> (sto)
-Create (mam)-[:CONNECT_BY_SEA] -> (dan)
-Create (mam)-[:CONNECT_BY_SEA] -> (rig)
-
 Create (whi:Province {name: 'Whisby', capacity: 1})
 Create (whi)-[:SUPPORT] -> (sto)
-Create (whi)-[:CONNECT_BY_COAST] -> (sto)
-Create (whi)-[:CONNECT_BY_SEA] -> (rig)
-Create (whi)-[:CONNECT_BY_SEA] -> (dan)
-Create (whi)-[:CONNECT_BY_SEA] -> (mam)
-
 Create (mit:Province {name: 'Mitau', capacity: 1})
 Create (mit)-[:SUPPORT] -> (rig)
-Create (mit)-[:CONNECT_BY_COAST] -> (rig)
-Create (mit)-[:CONNECT_BY_LAND] -> (rig)
 Create (mit)-[:SUPPORT] -> (dan)
-Create (mit)-[:CONNECT_BY_COAST] -> (dan)
-Create (mit)-[:CONNECT_BY_LAND] -> (dan)
-Create (mit)-[:CONNECT_BY_SEA] -> (mam)
-Create (mit)-[:CONNECT_BY_SEA] -> (whi)
-
 Create (ste:Province {name: 'Stettin', capacity: 1})
 create (ste) -[:SUPPORT] -> (dan)
 create (ste) -[:SUPPORT] -> (pra)
 create (ste) -[:SUPPORT] -> (lub)
-Create (ste)-[:CONNECT_BY_COAST] -> (dan)
-Create (ste)-[:CONNECT_BY_LAND] -> (dan)
-Create (ste)-[:CONNECT_BY_COAST] -> (lub)
-Create (ste)-[:CONNECT_BY_LAND] -> (lub)
-Create (ste)-[:CONNECT_BY_LAND] -> (pra)
-Create (ste)-[:CONNECT_BY_SEA] -> (sto)
-Create (ste)-[:CONNECT_BY_SEA] -> (whi)
-Create (ste)-[:CONNECT_BY_SEA] -> (mit)
-Create (ste)-[:CONNECT_BY_SEA] -> (rig)
-
 Create (cop:Province {name: 'Copenhagen', capacity: 1})
 Create (cop)-[:SUPPORT] -> (ham)
-Create (cop)-[:CONNECT_BY_COAST] -> (ham)
-Create (cop)-[:CONNECT_BY_LAND] -> (ham)
 Create (cop)-[:SUPPORT] -> (lub)
-Create (cop)-[:CONNECT_BY_COAST] -> (lub)
-Create (cop)-[:CONNECT_BY_LAND] -> (lub)
-Create (cop)-[:CONNECT_BY_COAST] -> (mam)
-Create (cop)-[:CONNECT_BY_COAST] -> (ste)
-Create (cop)-[:CONNECT_BY_SEA] -> (lon)
 
+
+// ********************************************************************
+// Associate provinces with Area I
+// ********************************************************************
 create (a1)-[:CONTAINS]->(ham)
 create (a1)-[:CONTAINS]->(lub)
 create (a1)-[:CONTAINS]->(ste)
@@ -256,6 +279,9 @@ create (a1)-[:CONTAINS]->(mam)
 create (a1)-[:CONTAINS]->(cop)
 
 
+// ********************************************************************
+// Define supporting provinces in Area II
+// ********************************************************************
 Create (kon:Province {name: 'Kongsberg', capacity: 1})
 Create (she:Province {name: 'Shetland Islands', capacity: 1})
 Create (arm:Province {name: 'Armagh', capacity: 1})
@@ -273,40 +299,9 @@ Create (she) - [:SUPPORT] -> (ber)
 Create (she) - [:SUPPORT] -> (edi)
 Create (kon) - [:SUPPORT] -> (ber)
 
-create (arm)-[:CONNECT_BY_LAND]->(wat)
-create (arm)-[:CONNECT_BY_COAST]->(wat)
-create (arm)-[:CONNECT_BY_COAST]->(edi)
-create (arm)-[:CONNECT_BY_COAST]->(che)
-create (arm)-[:CONNECT_BY_COAST]->(wal)
-create (wal)-[:CONNECT_BY_COAST]->(wat)
-create (wal)-[:CONNECT_BY_LAND]->(che)
-create (wal)-[:CONNECT_BY_COAST]->(che)
-Create (cow) - [:CONNECT_BY_LAND] -> (por)
-Create (cow) - [:CONNECT_BY_COAST] -> (por)
-Create (cow) - [:CONNECT_BY_COAST] -> (che)
-Create (cow) - [:CONNECT_BY_COAST] -> (wal)
-Create (che) - [:CONNECT_BY_LAND] -> (por)
-
-
-create (lon)-[:CONNECT_BY_LAND]->(por)
-create (lon)-[:CONNECT_BY_COAST]->(por)
-create (lon)-[:CONNECT_BY_LAND]->(yor)
-create (lon)-[:CONNECT_BY_COAST]->(yor)
-create (lon)-[:CONNECT_BY_COAST]->(par)
-create (lon)-[:CONNECT_BY_SEA]->(ber)
-create (lon)-[:CONNECT_BY_SEA]->(cop)
-create (lon)-[:CONNECT_BY_SEA]->(ham)
-create (yor)-[:CONNECT_BY_SEA]->(ber)
-create (yor)-[:CONNECT_BY_LAND]->(che)
-create (yor)-[:CONNECT_BY_LAND]->(por)
-create (yor)-[:CONNECT_BY_LAND]->(edi)
-create (yor)-[:CONNECT_BY_COAST]->(edi)
-create (edi)-[:CONNECT_BY_SEA]->(ber)
-create (edi)-[:CONNECT_BY_SEA]->(ice)
-create (edi)-[:CONNECT_BY_SEA]->(cop)
-create (edi)-[:CONNECT_BY_SEA]->(ham)
-
-
+// ********************************************************************
+// Associate provinces with Area II
+// ********************************************************************
 create (a2)-[:CONTAINS]->(lon)
 create (a2)-[:CONTAINS]->(por)
 create (a2)-[:CONTAINS]->(yor)
@@ -322,6 +317,9 @@ create (a2)-[:CONTAINS]->(wal)
 create (a2)-[:CONTAINS]->(cow)
 
 
+// ********************************************************************
+// Define supporting provinces in Area III
+// ********************************************************************
 Create (ams:Province {name: 'Amsterdam', capacity: 1})
 Create (gal:Province {name: 'St. Gali', capacity: 1})
 Create (saz:Province {name: 'Salzburg', capacity: 1})
@@ -351,22 +349,9 @@ Create (ess) -[:SUPPORT] -> (bud)
 Create (ess) -[:SUPPORT] -> (bel)
 Create (ess) -[:SUPPORT] -> (dub)
 
-
-CREATE (par)-[:CONNECT_BY_COAST]->(mal)
-CREATE (par)-[:CONNECT_BY_COAST]->(bru)
-CREATE (bru)-[:CONNECT_BY_COAST]->(ams)
-CREATE (ams)-[:CONNECT_BY_COAST]->(ham)
-CREATE (par)-[:CONNECT_BY_LAND]->(mal)
-CREATE (par)-[:CONNECT_BY_LAND]->(dij)
-CREATE (par)-[:CONNECT_BY_LAND]->(str)
-CREATE (par)-[:CONNECT_BY_LAND]->(bru)
-CREATE (par)-[:CONNECT_BY_LAND]->(loi)
-CREATE (mal)-[:CONNECT_BY_LAND]->(loi)
-CREATE (bru)-[:CONNECT_BY_LAND]->(str)
-CREATE (bru)-[:CONNECT_BY_LAND]->(col)
-CREATE (bru)-[:CONNECT_BY_LAND]->(ams)
-
-
+// ********************************************************************
+// Associate provinces with Area III
+// ********************************************************************
 create (a3)-[:CONTAINS]->(par)
 create (a3)-[:CONTAINS]->(bud)
 create (a3)-[:CONTAINS]->(ess)
@@ -384,3 +369,332 @@ create (a3)-[:CONTAINS]->(str)
 create (a3)-[:CONTAINS]->(bru)
 create (a3)-[:CONTAINS]->(mal)
 create (a3)-[:CONTAINS]->(loi)
+
+
+// ********************************************************************
+// Define supporting provinces in Area IV
+// ********************************************************************
+Create (leo:Province {name: 'Leon', capacity: 1})
+Create (pal:Province {name: 'Palma', capacity: 1})
+
+Create (leo) -[:SUPPORT] -> (baq)
+Create (leo) -[:SUPPORT] -> (tol)
+Create (leo) -[:SUPPORT] -> (lis)
+
+Create (pal) -[:SUPPORT] -> (val)
+Create (pal) -[:SUPPORT] -> (bar)
+
+// ********************************************************************
+// Associate provinces with Area IV
+// ********************************************************************
+create (a4)-[:CONTAINS]->(bar)
+create (a4)-[:CONTAINS]->(leo)
+create (a4)-[:CONTAINS]->(pal)
+create (a4)-[:CONTAINS]->(baq)
+create (a4)-[:CONTAINS]->(tol)
+create (a4)-[:CONTAINS]->(val)
+create (a4)-[:CONTAINS]->(lis)
+
+
+// ********************************************************************
+// Define supporting provinces in Area V
+// ********************************************************************
+Create (kaf:Province {name: 'Kaffa', capacity: 1})
+Create (kam:Province {name: 'Kamishin', capacity: 1})
+Create (aba:Province {name: 'Abasgia', capacity: 1})
+
+Create (kaf) -[:SUPPORT] -> (kie)
+Create (kaf) -[:SUPPORT] -> (var)
+Create (kaf) -[:SUPPORT] -> (tan)
+
+Create (kam) -[:SUPPORT] -> (sar)
+Create (kam) -[:SUPPORT] -> (tan)
+
+Create (aba) -[:SUPPORT] -> (pot)
+Create (aba) -[:SUPPORT] -> (tan)
+
+// ********************************************************************
+// Associate provinces with Area V
+// ********************************************************************
+create (a5)-[:CONTAINS]->(ang)
+create (a5)-[:CONTAINS]->(kaf)
+create (a5)-[:CONTAINS]->(kam)
+create (a5)-[:CONTAINS]->(aba)
+create (a5)-[:CONTAINS]->(kie)
+create (a5)-[:CONTAINS]->(sar)
+create (a5)-[:CONTAINS]->(tan)
+create (a5)-[:CONTAINS]->(var)
+create (a5)-[:CONTAINS]->(pot)
+create (a5)-[:CONTAINS]->(erz)
+create (a5)-[:CONTAINS]->(trb)
+
+
+// ********************************************************************
+// Define supporting provinces in Area VI
+// ********************************************************************
+Create (lib:Province {name: 'Libya', capacity: 1})
+Create (jer:Province {name: 'Jerusalem', capacity: 1})
+Create (lev:Province {name: 'Levant', capacity: 1})
+Create (tar:Province {name: 'Tarsus', capacity: 1})
+Create (ada:Province {name: 'Adalia', capacity: 1})
+
+Create (lib) -[:SUPPORT] -> (alx)
+Create (jer) -[:SUPPORT] -> (sue)
+Create (jer) -[:SUPPORT] -> (acr)
+Create (lev) -[:SUPPORT] -> (acr)
+Create (lev) -[:SUPPORT] -> (ale)
+Create (lev) -[:SUPPORT] -> (cyp)
+Create (tar) -[:SUPPORT] -> (ale)
+Create (tar) -[:SUPPORT] -> (cyp)
+Create (ada) -[:SUPPORT] -> (cyp)
+Create (ada) -[:SUPPORT] -> (smy)
+
+
+// ********************************************************************
+// Associate provinces with Area VI
+// ********************************************************************
+create (a6)-[:CONTAINS]->(lib)
+create (a6)-[:CONTAINS]->(jer)
+create (a6)-[:CONTAINS]->(lev)
+create (a6)-[:CONTAINS]->(tar)
+create (a6)-[:CONTAINS]->(ada)
+create (a6)-[:CONTAINS]->(cyp)
+create (a6)-[:CONTAINS]->(alx)
+create (a6)-[:CONTAINS]->(acr)
+create (a6)-[:CONTAINS]->(sue)
+create (a6)-[:CONTAINS]->(cai)
+create (a6)-[:CONTAINS]->(ale)
+
+
+// ********************************************************************
+// Define supporting provinces in Area VII
+// ********************************************************************
+Create (bai:Province {name: 'Bari', capacity: 1})
+
+// ********************************************************************
+// Associate provinces with Area VII
+// ********************************************************************
+create (a7)-[:CONTAINS]->(bai)
+
+// ********************************************************************
+// Define supporting provinces in Area VIII
+// ********************************************************************
+Create (ath:Province {name: 'Athens', capacity: 1})
+
+// ********************************************************************
+// Associate provinces with Area VIII
+// ********************************************************************
+create (a8)-[:CONTAINS]->(ath)
+
+
+// ********************************************************************
+// Define connections between provinces
+// ********************************************************************
+
+// ********************************************************************
+// * Area I
+// ********************************************************************
+
+Create (rig)-[:CONNECT_BY_COAST] -> (nov)
+Create (rig)-[:CONNECT_BY_COAST] -> (mit)
+Create (nov)-[:CONNECT_BY_COAST] -> (rig)
+Create (mit)-[:CONNECT_BY_COAST] -> (rig)
+Create (mit)-[:CONNECT_BY_COAST] -> (dan)
+Create (dan)-[:CONNECT_BY_COAST] -> (mit)
+Create (dan)-[:CONNECT_BY_COAST] -> (ste)
+Create (ste)-[:CONNECT_BY_COAST] -> (lub)
+Create (ste)-[:CONNECT_BY_COAST] -> (dan)
+Create (ste)-[:CONNECT_BY_COAST] -> (mam)
+Create (ste)-[:CONNECT_BY_COAST] -> (cop)
+Create (whi)-[:CONNECT_BY_COAST] -> (sto)
+Create (mam)-[:CONNECT_BY_COAST] -> (sto)
+Create (mam)-[:CONNECT_BY_COAST] -> (ste)
+Create (mam)-[:CONNECT_BY_COAST] -> (cop)
+Create (mam)-[:CONNECT_BY_COAST] -> (kon)
+Create (cop)-[:CONNECT_BY_COAST] -> (ham)
+Create (cop)-[:CONNECT_BY_COAST] -> (lub)
+Create (cop)-[:CONNECT_BY_COAST] -> (mam)
+Create (cop)-[:CONNECT_BY_COAST] -> (ste)
+Create (cop)-[:CONNECT_BY_COAST] -> (kon)
+Create (sto)-[:CONNECT_BY_COAST] -> (whi)
+Create (sto)-[:CONNECT_BY_COAST] -> (mam)
+Create (lub)-[:CONNECT_BY_COAST] -> (cop)
+Create (lub)-[:CONNECT_BY_COAST] -> (ste)
+Create (ham)-[:CONNECT_BY_COAST] -> (cop)
+Create (ham)-[:CONNECT_BY_COAST] -> (ams)
+
+Create (nov)-[:CONNECT_BY_LAND] -> (kie)
+Create (nov)-[:CONNECT_BY_LAND] -> (rig)
+Create (rig)-[:CONNECT_BY_LAND] -> (nov)
+Create (rig)-[:CONNECT_BY_LAND] -> (mit)
+Create (mit)-[:CONNECT_BY_LAND] -> (rig)
+Create (mit)-[:CONNECT_BY_LAND] -> (dan)
+Create (dan)-[:CONNECT_BY_LAND] -> (mit)
+Create (dan)-[:CONNECT_BY_LAND] -> (ste)
+Create (dan)-[:CONNECT_BY_LAND] -> (bre)
+Create (ste)-[:CONNECT_BY_LAND] -> (dan)
+Create (ste)-[:CONNECT_BY_LAND] -> (lub)
+Create (ste)-[:CONNECT_BY_LAND] -> (pra)
+Create (ste)-[:CONNECT_BY_LAND] -> (bre)
+Create (lub)-[:CONNECT_BY_LAND] -> (ste)
+Create (lub)-[:CONNECT_BY_LAND] -> (pra)
+Create (lub)-[:CONNECT_BY_LAND] -> (nur)
+Create (lub)-[:CONNECT_BY_LAND] -> (col)
+Create (lub)-[:CONNECT_BY_LAND] -> (ham)
+Create (lub)-[:CONNECT_BY_LAND] -> (cop)
+Create (ham)-[:CONNECT_BY_LAND] -> (lub)
+Create (ham)-[:CONNECT_BY_LAND] -> (col)
+Create (ham)-[:CONNECT_BY_LAND] -> (ams)
+Create (ham)-[:CONNECT_BY_LAND] -> (cop)
+Create (cop)-[:CONNECT_BY_LAND] -> (ham)
+Create (cop)-[:CONNECT_BY_LAND] -> (lub)
+Create (mam)-[:CONNECT_BY_LAND] -> (sto)
+Create (mam)-[:CONNECT_BY_LAND] -> (kon)
+Create (sto)-[:CONNECT_BY_LAND] -> (mam)
+
+Create (rig)-[:CONNECT_BY_SEA] -> (mam)
+Create (rig)-[:CONNECT_BY_SEA] -> (whi)
+Create (rig)-[:CONNECT_BY_SEA] -> (sto)
+Create (rig)-[:CONNECT_BY_SEA] -> (ste)
+Create (rig)-[:CONNECT_BY_SEA] -> (dan)
+Create (mit)-[:CONNECT_BY_SEA] -> (mam)
+Create (mit)-[:CONNECT_BY_SEA] -> (whi)
+Create (mit)-[:CONNECT_BY_SEA] -> (sto)
+Create (mit)-[:CONNECT_BY_SEA] -> (ste)
+Create (sto)-[:CONNECT_BY_SEA] -> (dan)
+Create (sto)-[:CONNECT_BY_SEA] -> (mit)
+Create (sto)-[:CONNECT_BY_SEA] -> (rig)
+Create (sto)-[:CONNECT_BY_SEA] -> (ste)
+Create (whi)-[:CONNECT_BY_SEA] -> (rig)
+Create (whi)-[:CONNECT_BY_SEA] -> (dan)
+Create (whi)-[:CONNECT_BY_SEA] -> (mam)
+Create (whi)-[:CONNECT_BY_SEA] -> (ste)
+Create (whi)-[:CONNECT_BY_SEA] -> (mit)
+Create (mam)-[:CONNECT_BY_SEA] -> (dan)
+Create (mam)-[:CONNECT_BY_SEA] -> (rig)
+Create (mam)-[:CONNECT_BY_SEA] -> (mit)
+Create (mam)-[:CONNECT_BY_SEA] -> (whi)
+Create (ste)-[:CONNECT_BY_SEA] -> (sto)
+Create (ste)-[:CONNECT_BY_SEA] -> (whi)
+Create (ste)-[:CONNECT_BY_SEA] -> (mit)
+Create (ste)-[:CONNECT_BY_SEA] -> (rig)
+Create (dan)-[:CONNECT_BY_SEA] -> (sto)
+Create (dan)-[:CONNECT_BY_SEA] -> (whi)
+Create (dan)-[:CONNECT_BY_SEA] -> (mam)
+Create (dan)-[:CONNECT_BY_SEA] -> (rig)
+Create (cop)-[:CONNECT_BY_SEA] -> (lon)
+Create (cop)-[:CONNECT_BY_SEA] -> (ams)
+Create (cop)-[:CONNECT_BY_SEA] -> (bru)
+Create (cop)-[:CONNECT_BY_SEA] -> (yor)
+Create (cop)-[:CONNECT_BY_SEA] -> (edi)
+Create (cop)-[:CONNECT_BY_SEA] -> (she)
+Create (cop)-[:CONNECT_BY_SEA] -> (ber)
+Create (ham)-[:CONNECT_BY_SEA] -> (lon)
+Create (ham)-[:CONNECT_BY_SEA] -> (kon)
+Create (ham)-[:CONNECT_BY_SEA] -> (bru)
+Create (ham)-[:CONNECT_BY_SEA] -> (yor)
+Create (ham)-[:CONNECT_BY_SEA] -> (edi)
+Create (ham)-[:CONNECT_BY_SEA] -> (she)
+Create (ham)-[:CONNECT_BY_SEA] -> (ber)
+
+// ********************************************************************
+// * Area II connections
+// ********************************************************************
+create (arm)-[:CONNECT_BY_COAST]->(wat)
+create (arm)-[:CONNECT_BY_COAST]->(edi)
+create (arm)-[:CONNECT_BY_COAST]->(che)
+create (arm)-[:CONNECT_BY_COAST]->(wal)
+create (wal)-[:CONNECT_BY_COAST]->(wat)
+create (wal)-[:CONNECT_BY_COAST]->(che)
+Create (cow)-[:CONNECT_BY_COAST]->(por)
+Create (cow)-[:CONNECT_BY_COAST]->(che)
+Create (cow)-[:CONNECT_BY_COAST]->(wal)
+create (lon)-[:CONNECT_BY_COAST]->(por)
+create (lon)-[:CONNECT_BY_COAST]->(yor)
+create (lon)-[:CONNECT_BY_COAST]->(par)
+create (yor)-[:CONNECT_BY_COAST]->(edi)
+
+create (lon)-[:CONNECT_BY_LAND]->(por)
+create (lon)-[:CONNECT_BY_LAND]->(yor)
+create (yor)-[:CONNECT_BY_LAND]->(che)
+create (yor)-[:CONNECT_BY_LAND]->(por)
+create (yor)-[:CONNECT_BY_LAND]->(edi)
+create (wal)-[:CONNECT_BY_LAND]->(che)
+create (arm)-[:CONNECT_BY_LAND]->(wat)
+Create (cow)-[:CONNECT_BY_LAND]->(por)
+Create (che)-[:CONNECT_BY_LAND]->(por)
+
+create (lon)-[:CONNECT_BY_SEA]->(ber)
+create (lon)-[:CONNECT_BY_SEA]->(cop)
+create (lon)-[:CONNECT_BY_SEA]->(ham)
+create (yor)-[:CONNECT_BY_SEA]->(ber)
+create (edi)-[:CONNECT_BY_SEA]->(ber)
+create (edi)-[:CONNECT_BY_SEA]->(ice)
+create (edi)-[:CONNECT_BY_SEA]->(cop)
+create (edi)-[:CONNECT_BY_SEA]->(ham)
+
+
+
+// ********************************************************************
+// * Area III connections
+// ********************************************************************
+CREATE (par)-[:CONNECT_BY_COAST]->(mal)
+CREATE (par)-[:CONNECT_BY_COAST]->(bru)
+CREATE (par)-[:CONNECT_BY_COAST]->(por)
+CREATE (par)-[:CONNECT_BY_COAST]->(lon)
+CREATE (bru)-[:CONNECT_BY_COAST]->(ams)
+CREATE (bru)-[:CONNECT_BY_COAST]->(lon)
+CREATE (ams)-[:CONNECT_BY_COAST]->(ham)
+CREATE (mal)-[:CONNECT_BY_COAST]->(por)
+
+CREATE (par)-[:CONNECT_BY_LAND]->(mal)
+CREATE (par)-[:CONNECT_BY_LAND]->(dij)
+CREATE (par)-[:CONNECT_BY_LAND]->(str)
+CREATE (par)-[:CONNECT_BY_LAND]->(bru)
+CREATE (par)-[:CONNECT_BY_LAND]->(loi)
+CREATE (mal)-[:CONNECT_BY_LAND]->(loi)
+CREATE (bru)-[:CONNECT_BY_LAND]->(str)
+CREATE (bru)-[:CONNECT_BY_LAND]->(col)
+CREATE (bru)-[:CONNECT_BY_LAND]->(ams)
+
+CREATE (ams)-[:CONNECT_BY_LAND]->(ham)
+CREATE (ams)-[:CONNECT_BY_LAND]->(col)
+CREATE (ams)-[:CONNECT_BY_LAND]->(bru)
+
+CREATE (col)-[:CONNECT_BY_LAND]->(ham)
+CREATE (col)-[:CONNECT_BY_LAND]->(lub)
+CREATE (col)-[:CONNECT_BY_LAND]->(nur)
+CREATE (col)-[:CONNECT_BY_LAND]->(str)
+CREATE (col)-[:CONNECT_BY_LAND]->(bru)
+CREATE (col)-[:CONNECT_BY_LAND]->(ams)
+
+CREATE (str)-[:CONNECT_BY_LAND]->(par)
+CREATE (str)-[:CONNECT_BY_LAND]->(bru)
+CREATE (str)-[:CONNECT_BY_LAND]->(col)
+CREATE (str)-[:CONNECT_BY_LAND]->(nur)
+CREATE (str)-[:CONNECT_BY_LAND]->(gal)
+CREATE (str)-[:CONNECT_BY_LAND]->(bas)
+CREATE (str)-[:CONNECT_BY_LAND]->(dij)
+
+CREATE (mal)-[:CONNECT_BY_SEA]->(cor)
+CREATE (mal)-[:CONNECT_BY_SEA]->(wal)
+CREATE (mal)-[:CONNECT_BY_SEA]->(wat)
+CREATE (mal)-[:CONNECT_BY_SEA]->(arm)
+CREATE (mal)-[:CONNECT_BY_SEA]->(edi)
+
+CREATE (bru)-[:CONNECT_BY_SEA]->(yor)
+CREATE (bru)-[:CONNECT_BY_SEA]->(edi)
+CREATE (bru)-[:CONNECT_BY_SEA]->(she)
+CREATE (bru)-[:CONNECT_BY_SEA]->(ber)
+CREATE (bru)-[:CONNECT_BY_SEA]->(kon)
+CREATE (bru)-[:CONNECT_BY_SEA]->(cop)
+CREATE (bru)-[:CONNECT_BY_SEA]->(ham)
+
+CREATE (ams)-[:CONNECT_BY_SEA]->(yor)
+CREATE (ams)-[:CONNECT_BY_SEA]->(edi)
+CREATE (ams)-[:CONNECT_BY_SEA]->(she)
+CREATE (ams)-[:CONNECT_BY_SEA]->(ber)
+CREATE (ams)-[:CONNECT_BY_SEA]->(kon)
+CREATE (ams)-[:CONNECT_BY_SEA]->(cop)
+CREATE (ams)-[:CONNECT_BY_SEA]->(lon)
+
