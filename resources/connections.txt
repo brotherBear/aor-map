@@ -2,14 +2,21 @@
 
 # This is really a graph database???
 
-Hamburg Lubeck
-Hamburg Amsterdam Coast
-Hamburg Copenhagen Coast
-Hamburg Cologne
-Stockholm Whisby Galley
-Stockholm Malmo Coast
-Malmo Copenhagen Galley
-Malmo Kongsberg Coast
-Malmo Stettin Galley
-Copenhagen Lubeck Coast
 
+MATCH (a:Province { name: 'Lubeck' }), (b:Province { name: 'Copenhagen' })
+CREATE (a)-[:CONNECT_BY_COAST]->(b)
+CREATE (a)-[:CONNECT_BY_LAND]->(b)
+
+Hamburg Lubeck L
+Hamburg Amsterdam CL
+Hamburg Copenhagen CL
+Hamburg Cologne L
+Stockholm Whisby C
+Stockholm Malmo CL
+Malmo Copenhagen C
+Malmo Kongsberg CL
+Malmo Stettin C
+Copenhagen Lubeck CL
+Bergen Kongsberg CL
+Bergen "Shetland Islands" C
+Iceland "Shetland Islands" S
